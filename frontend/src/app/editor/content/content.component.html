@@ -1,0 +1,20 @@
+<div class="addon-content">
+  <p style="align-self:center;">Start writing the addon content</p>
+  <div class="editable">
+      <div id="content-area">
+        @for(content of contents; track $index) {
+          <div class="content">
+            <div *ngIf="content.content.length > 0" [contentEditable]="content.editable" [(ngModel)]="content.content" class="editor" [id]="'editor'+$index">{{content.content}}</div>
+            <img src={{content.img_content}} width="512" height="100%"/>
+          </div>
+      }
+      </div>
+    <textarea [(ngModel)]="current_content" id="editor" class="finaleditor"></textarea>
+  </div>
+  <div class="content-options">
+    <input type="file" accept="image/*" style="display:none;" id="img_requester" (change)="req_img()"/>
+    <label for="img_requester">
+      <box-icon type='solid' name='image-add' color="white"></box-icon>
+    </label>
+  </div>
+</div>

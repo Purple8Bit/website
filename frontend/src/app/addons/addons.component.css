@@ -1,0 +1,16 @@
+.addons {
+  display:flex;
+  flex-direction:column;
+}
+.right {
+  margin-left:auto;
+}
+.addon {
+  transition-duration: 3s;
+  transform: translateY(15%);
+  opacity: 0;
+}
+.addon.visible {
+  opacity: 1;
+  transform:none;
+}

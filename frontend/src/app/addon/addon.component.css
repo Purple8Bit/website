@@ -1,0 +1,39 @@
+.addon {
+  text-decoration: none;
+}
+.title {
+  color:var(--primary);
+  font-size: 48px;
+  padding-left: 24px;
+  width: fit-content;
+}
+.title-right {
+  color:var(--primary);
+  font-size:48px;
+  align-self:flex-end;
+  padding-right: 24px;
+  width:fit-content;
+}
+.in-right {
+  flex-direction: row-reverse;
+}
+.addon-wallpaper {
+  max-width: 720px;
+  max-height: 480px;
+}
+.container {
+  display:flex;
+  flex-direction:column;
+}
+.description {
+  color: var(--primary);
+  padding-top: 12px;
+  padding-bottom: 12px;
+  font-size: 24px;
+  font-weight: 600;
+  overflow-wrap: break-word;
+}
+.desc-right {
+  padding-left: 24px;
+}
+

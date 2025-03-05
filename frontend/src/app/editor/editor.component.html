@@ -1,0 +1,46 @@
+<div class="editor">
+  <div class="editing-stuff">
+    <div class="editions">
+      @for(addon of addons; track addon.id) {
+        <button (click)="open(addon)" class="addon-btn">
+          <div class="addon">
+            <h1>{{addon.title}}</h1>
+            <img src={{addon.wallpaper}} alt='Failed to load addon wallpaper' class="addon-image"/>
+          </div>
+        </button>
+      }@empty {
+        <h1>Its sad theres nothing yet</h1>
+      }
+    </div>
+    <button class="creation-btn" (click)="create()">Wanna create?</button>
+  </div>
+  <dialog id="creation">
+    <div class="contents">
+      <div class="top">
+        <input type="text" id="title" class="title" placeholder="Set the title"/>
+        <button (click)="close()" class="close">
+          <box-icon name='x' color="white" class="close-x"></box-icon>
+        </button>
+      </div>
+      <div style="margin-top: 12px;">
+        <input type="file" accept="image/*" style="display:none;" id="wallpaper" (change)="handle_image()"/>
+        <label for="wallpaper" class="img-selector">
+          @if(!has_img){ <p>Select the Wallpaper</p> }
+          <img id="preview" />
+        </label>
+      </div>
+      <textarea class="descriptor" placeholder="Add the description" [(ngModel)]="description"></textarea>
+      <app-content style="height:50%; margin:auto;" [addon_id]="editing_id"></app-content>
+      <div style="display:flex;justify-content:center; column-gap: 12px;">
+        <button (click)="confirm()" class="task-btn confirm">Confirm</button>
+        @if(editing) {<button class="task-btn delete" (click)="delete()">Delete</button>}
+      </div>
+    </div>
+  </dialog>
+</div>
+@if(err_msg != ""){
+  <div class="err">
+    <div class="filling-err" id="err"></div>
+  <p class="err-msg">{{err_msg}}</p>
+  </div>
+}

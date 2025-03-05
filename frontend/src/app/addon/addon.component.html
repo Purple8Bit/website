@@ -1,0 +1,9 @@
+<div class="container">
+  <a [href]="'addon/'+addon.id" class="addon">
+   <h1 [class]="right ? 'title-right' : 'title'">{{addon.title}}</h1>
+    <div style="display:flex; column-gap: 24px" [class]="right ? 'in-right' : 'in-left'">
+      <img src={{addon.wallpaper}} class="addon-wallpaper"/>
+      <p class="description"[class]="right ? 'desc-right' : ''">{{description}}</p>
+    </div>
+  </a>
+</div>

@@ -1,0 +1,13 @@
+<div class="contents">
+    <h1 class="title">{{contents?.title ?? ""}}</h1>
+    <img [src]="wallpaper()"/>
+    <h3 class="description">{{contents?.description ?? ""}}</h3>
+    @for(content of contents?.contents; track content.text) {
+        <div class="subcontent" [class]="$index == 0 ? 'withtop' : ''">
+            @for(img of content.imgs; track img) {
+                <img [src]="wallpaper(img)" class="content-img"/>
+            }
+            <h3 class="content-str">{{content.text}}</h3>
+        </div>
+    }
+</div>

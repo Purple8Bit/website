@@ -1,0 +1,47 @@
+.contents {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+.description {
+    font-size: 18px;
+}
+.title{
+    font-size: 64px;
+}
+.content-img {
+    padding-top:8px;
+    width: 100%;
+}
+.subcontent {
+    --border-angle:0deg;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border: 2px solid transparent;
+    animation: border-angle-rotate 4s infinite linear;
+    background: linear-gradient(transparent, transparent) padding-box,
+      conic-gradient(
+          from var(--border-angle),
+          transparent 50%,
+          var(--primary)
+        )
+        border-box;
+    max-width: 70%;
+    padding-top: 4px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+.withtop {
+    border-top-width: 3px;
+}
+@keyframes border-angle-rotate {
+    from { --border-angle: 0deg; }
+    to { --border-angle: 360deg; }
+}
+@property --border-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+  

@@ -1,0 +1,7 @@
+<div class="addons">
+  @for(addon of addons; track addon.id) {
+    <app-addon class="addon" [class]="$index % 2 != 0 ? 'right' : ''" [addon]="addon" [right]="$index % 2 != 0" [description]="addon.description"></app-addon>
+  }@empty {
+    <h1 style="align-self:center;">Gotta put some addons here</h1>
+  }
+</div>
