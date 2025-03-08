@@ -3,7 +3,6 @@ import { FormsModule } from "@angular/forms";
 import { environment } from '../../environment/environment';
 import { AddonInfo } from '../../types';
 import { HttpClient } from '@angular/common/http';
-import Compressor from "compressorjs";
 import { ActivatedRoute, Router } from '@angular/router';
 import { Content, ContentComponent } from './content/content.component';
 
@@ -85,16 +84,9 @@ export class EditorComponent implements OnInit {
   }
   public set_img(f: File) {
     const freader = new FileReader();
-    new Compressor(f, {
-      resize: "contain",
-      maxHeight: 1024,
-      maxWidth: 1024,
-      success: (f) => {
-        this.img = f;
-        freader.onload = (e) => this.img_src = (document.getElementById("preview") as HTMLImageElement).src = e.target?.result as string;
-        freader.readAsDataURL(f);
-      }
-    });
+    this.img = f;
+    freader.onload = (e) => this.img_src = (document.getElementById("preview") as HTMLImageElement).src = e.target?.result as string;
+    freader.readAsDataURL(f);
   }
   public handle_image() {
     const paper = document.getElementById("wallpaper")! as HTMLInputElement;
