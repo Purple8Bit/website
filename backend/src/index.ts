@@ -8,16 +8,12 @@ import { delete_addon } from "./helpers/delete";
 import { createClient } from "@supabase/supabase-js";
 
 export const prisma = new PrismaClient();
-const supabaseUrl = 'https://nzfoyjdezqklnmwmbzwe.supabase.co';
-const supabaseKey = process.env.SUPABASE_KEY!;
-export const supabase = createClient(supabaseUrl, supabaseKey);
-
+export const supabase = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);
 
 async function init() {
-  const { data, error } = await supabase.storage.getBucket("imgs");
+  const { error } = await supabase.storage.getBucket("imgs");
   {
     if (error) {
-      console.log("Deu erro ao pegar o bucket", error);
       const bucket = await supabase.storage.createBucket("imgs");
       if (bucket.error) throw error;
       else console.log(bucket.data);
@@ -30,7 +26,7 @@ async function main() {
   const app =
     new Elysia()
       .use(cors({
-        origin: "http://localhost:4200",
+        origin: "*",
       }))
       .use(staticPlugin())
       .get("/addons/:amount", async ({ params: { amount } }) => await get_addons(amount), {

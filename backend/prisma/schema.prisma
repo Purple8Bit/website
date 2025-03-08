@@ -22,8 +22,3 @@ model Content {
   Addon   Addon?   @relation(fields: [addonId], references: [id])
   addonId Int?
 }
-
-model ImgRef {
-  id  Int    @id @default(autoincrement())
-  url String
-}
