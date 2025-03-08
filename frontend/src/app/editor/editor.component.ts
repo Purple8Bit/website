@@ -1,6 +1,6 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit, ViewChild } from '@angular/core';
 import { FormsModule } from "@angular/forms";
-import { environment } from '../../environment/environment';
+import { environment } from '../../environments/environment';
 import { AddonInfo } from '../../types';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';

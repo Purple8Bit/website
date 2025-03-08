@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { environment } from '../../environment/environment';
+import { environment } from '../../environments/environment';
 
 
 interface AddonContent {
