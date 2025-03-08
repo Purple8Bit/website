@@ -20,27 +20,27 @@ export type Content = {
 export class ContentComponent {
   current_content: string = "";
   contents: Array<Content> = [];
-  set_contents(contents: Array<{content:string, imgs:string[]}>) {
-    
+  set_contents(contents: Array<{ content: string, imgs: string[] }>) {
+
     let content;
     let i = 0;
     let img;
-    while(content = contents[i++]){
+    while (content = contents[i++]) {
       this.contents.push({
         content: content.content,
-        img_content: environment.server_url+content.imgs.shift()!,
+        img_content: content.imgs.shift()!,
         img: null as any as File,
         editable: false,
       });
-      while(img = content.imgs.shift()){
+      while (img = content.imgs.shift()) {
         this.contents.push({
-          content:"",
-          img_content: environment.server_url+img,
+          content: "",
+          img_content: img,
           img: null as any as File,
           editable: false,
         })
       }
-      setTimeout(()=>{
+      setTimeout(() => {
         this.contents.push({} as any);
         this.contents.pop();
       }, 100);

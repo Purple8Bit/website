@@ -7,9 +7,9 @@ export async function delete_addon(id: number) {
       id
     },
     include: {
-      contents:true
+      contents: true
     }
   });
-  for(const content of data.contents) for(const img of content.imgs) delete_img(img);
-  
+  await delete_img(data.wallpaper);
+  for (const content of data.contents) for (const img of content.imgs) await delete_img(img);
 }

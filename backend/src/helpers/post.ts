@@ -63,7 +63,6 @@ export async function create_addon(input: Addon) {
     const val = await prisma.addon.create({
       data: contents
     });
-    console.log(val);
     return "Ok";
   } catch (e) {
     console.log(e);
@@ -76,7 +75,6 @@ export async function edit(id: number, input: Addon) {
     include: { contents: true }
   }));
   if (!addon) return "Ok";
-  console.log(addon);
   try {
     if (input.wallpaper && input.wallpaper != "undefined") {
       await delete_img(addon.wallpaper);
@@ -98,7 +96,6 @@ export async function edit(id: number, input: Addon) {
     return "Err";
   }
   const prisma_content = await get_prisma_contents(input);
-  console.log(prisma_content);
   await prisma.addon.update({
     where: { id },
     data: prisma_content

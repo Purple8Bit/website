@@ -33,13 +33,7 @@ export class EditorComponent implements OnInit {
   }
   ngOnInit(): void {
     this.http.get(environment.server_url + "addons/0").subscribe(data => {
-      const addons = (data as Array<AddonInfo>).map(data => ({
-        description: data.description,
-        wallpaper: environment.server_url + data.wallpaper,
-        title: data.title,
-        id: data.id,
-      }));
-      this.addons.push(...addons);
+      this.addons.push(...data as Array<AddonInfo>);
     });
   }
   get has_img() {

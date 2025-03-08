@@ -5,8 +5,28 @@ import { Addon, PrismaClient } from "@prisma/client";
 import { get_addons, get_contentsof } from "./helpers/get";
 import staticPlugin from "@elysiajs/static";
 import { delete_addon } from "./helpers/delete";
+import { createClient } from "@supabase/supabase-js";
+
 export const prisma = new PrismaClient();
+const supabaseUrl = 'https://nzfoyjdezqklnmwmbzwe.supabase.co';
+const supabaseKey = process.env.SUPABASE_KEY!;
+export const supabase = createClient(supabaseUrl, supabaseKey);
+
+
+async function init() {
+  const { data, error } = await supabase.storage.getBucket("imgs");
+  {
+    if (error) {
+      console.log("Deu erro ao pegar o bucket", error);
+      const bucket = await supabase.storage.createBucket("imgs");
+      if (bucket.error) throw error;
+      else console.log(bucket.data);
+    }
+  }
+}
+
 async function main() {
+  await init();
   const app =
     new Elysia()
       .use(cors({
@@ -28,9 +48,9 @@ async function main() {
           id: t.Number()
         })
       })
-      .get("content/:id", async({params:{id}}) => await get_contentsof(id), {
-        params:t.Object({
-          id:t.Number()
+      .get("content/:id", async ({ params: { id } }) => await get_contentsof(id), {
+        params: t.Object({
+          id: t.Number()
         })
       })
       .post("/create", async ({ body }) => {

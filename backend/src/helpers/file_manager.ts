@@ -1,24 +1,27 @@
-import Bun from "bun";
+import { supabase } from "..";
 
-let outdir = "public/";
-export function set_dir(dir: string) {
-  outdir = dir;
+export async function save_blob(name: string, buffer: Blob) {
+  try {
+    const bucket = supabase.storage.from("imgs");
+    const { data, error } = await bucket.upload(name, buffer);
+    console.log(data);
+    if (error) throw error;
+    const url = bucket.getPublicUrl(name).data.publicUrl;
+    return url;
+  } catch (e) {
+    console.log(e);
+  }
 }
 
-export async function save_file(name: string, buffer: Uint8Array) {
-  const dir = outdir + name;
-  await Bun.write(dir, buffer);
-  return dir;
-}
-
-export async function save_blob(name: string, file: Blob) {
-  const dir = outdir + name;
-  await Bun.write(dir, file);
-  return dir;
-}
 
 export async function delete_img(name: string) {
+  const id = name.split("/").pop()!;
   try {
-    await Bun.file(outdir + name).delete();
-  } catch { };
+    const { data, error } = await supabase.storage.from("imgs").remove([id]);
+    console.log("trying to remove", id);
+    if (error) throw error;
+    console.log(data);
+  } catch (e) {
+    console.log(e);
+  };
 }
