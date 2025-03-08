@@ -1,7 +1,7 @@
 import { NgIf } from '@angular/common';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, } from '@angular/core';
 import { FormsModule } from "@angular/forms";
-import { environment } from '../../../environment/environment';
+import { environment } from '../../../environments/environment';
 
 export type Content = {
   content: string;
