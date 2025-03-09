@@ -1,8 +1,7 @@
 import { Addon } from "@prisma/client";
 import { prisma } from "..";
-import { randomUUIDv7 } from "bun";
 import { delete_img, save_blob } from "./file_manager";
-
+import { v4 as uuidv4 } from "uuid";
 interface ContentData {
   text?: string;
   imgs: string[]
@@ -12,7 +11,7 @@ export async function save_img(img: File, name?: string) {
   if (name) return await save_blob(name, img);
 
   const extension = img.name.split(".").pop();
-  const path = randomUUIDv7("hex") + "." + extension;
+  const path = uuidv4() + "." + extension;
   return await save_blob(path, img);
 }
 
