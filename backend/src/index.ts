@@ -14,6 +14,7 @@ async function init() {
   const { error } = await supabase.storage.getBucket("imgs");
   {
     if (error) {
+      console.error(error);
       const bucket = await supabase.storage.createBucket("imgs");
       if (bucket.error) throw error;
       else console.log(bucket.data);
