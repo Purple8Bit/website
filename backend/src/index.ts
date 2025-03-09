@@ -56,6 +56,9 @@ async function main() {
       .post("/create", async ({ body }) => {
         return await create_addon(body as Addon)
       })
+      .get("/", (ctx) => {
+        ctx.body = "Já era";
+      })
       .listen(3000);
 }
 main();
