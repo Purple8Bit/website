@@ -12,6 +12,7 @@
     "@elysiajs/static": "^1.2.0",
     "@prisma/client": "^6.3.1",
     "@supabase/supabase-js": "^2.49.1",
+    "dotenv": "^16.4.7",
     "elysia": "latest",
     "prisma": "^6.3.1",
     "supabase": "^2.15.8",

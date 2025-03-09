@@ -1,3 +1,6 @@
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 import { Elysia, t } from "elysia";
 import { create_addon, edit, } from "./helpers/post";
 import cors from "@elysiajs/cors";
