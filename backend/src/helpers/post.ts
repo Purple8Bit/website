@@ -25,9 +25,6 @@ export async function save_imgs(imgs: File | File[], target: ContentData) {
     if (r = await save_img(imgs)) target.imgs.push(r);
   }
 }
-interface Object {
-  keys<T>(o: T): keyof T;
-}
 async function get_prisma_contents(input: Addon) {
   const contents = [];
   const prisma_input = {} as Addon;

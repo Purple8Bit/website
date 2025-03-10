@@ -1,19 +1,13 @@
-import * as dotenv from 'dotenv';
 
-dotenv.config();
-import { Elysia, t } from "elysia";
 import { create_addon, edit, } from "./helpers/post.js";
-import cors from "@elysiajs/cors";
 import { Addon, PrismaClient } from "@prisma/client";
 import { get_addons, get_contentsof } from "./helpers/get.js";
-import staticPlugin from "@elysiajs/static";
 import { delete_addon } from "./helpers/delete.js";
 import { createClient } from "@supabase/supabase-js";
-
-
+import cors from "cors";
+import express from "express";
 export const prisma = new PrismaClient();
 export const supabase = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);
-
 async function init() {
   const { error } = await supabase.storage.getBucket("imgs");
   {
@@ -25,42 +19,20 @@ async function init() {
     }
   }
 }
-
 async function main() {
   await init();
-  const app =
-    new Elysia()
-      .use(cors({
-        origin: "*",
-      }))
-      .use(staticPlugin())
-      .get("/addons/:amount", async ({ params: { amount } }) => await get_addons(amount), {
-        params: t.Object({
-          amount: t.Number()
-        })
-      })
-      .post("/edit/:id", async ({ params: { id }, body }) => await edit(id, body as any), {
-        params: t.Object({
-          id: t.Number()
-        })
-      })
-      .delete("delete/:id", async ({ params: { id } }) => await delete_addon(id), {
-        params: t.Object({
-          id: t.Number()
-        })
-      })
-      .get("content/:id", async ({ params: { id } }) => await get_contentsof(id), {
-        params: t.Object({
-          id: t.Number()
-        })
-      })
-      .post("/create", async ({ body }) => {
-        return await create_addon(body as Addon)
-      })
-      .get("/", (ctx) => {
-        ctx.body = "Já era";
-      })
-      .listen(3000);
+  const app = express();
+  app
+    .use(cors())
+    .use(express.json())
+    .get('/addons/:amount', async (req, res) => void res.json(await get_addons(Number(req.params.amount))))
+    .post('/edit/:id', async (req, res) => void res.json(await edit(Number(req.params.id), req.body)))
+    .delete("delete/:id", async (req, res) => void res.json(await delete_addon(Number(req.params.id))))
+    .get("content/:id", async (req, res) => void res.json(await get_contentsof(Number(req.params.id))))
+    .post("/create", async (req, res) => void res.json(await create_addon(req.body as Addon)))
   return app;
 }
-export default main();
+export default async function(req, res) {
+  const app = await (main());
+  app(req, res)
+};
