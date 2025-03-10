@@ -2,12 +2,12 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 import { Elysia, t } from "elysia";
-import { create_addon, edit, } from "./helpers/post";
+import { create_addon, edit, } from "./helpers/post.js";
 import cors from "@elysiajs/cors";
 import { Addon, PrismaClient } from "@prisma/client";
-import { get_addons, get_contentsof } from "./helpers/get";
+import { get_addons, get_contentsof } from "./helpers/get.js";
 import staticPlugin from "@elysiajs/static";
-import { delete_addon } from "./helpers/delete";
+import { delete_addon } from "./helpers/delete.js";
 import { createClient } from "@supabase/supabase-js";
 
 
