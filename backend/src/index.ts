@@ -10,6 +10,8 @@ import staticPlugin from "@elysiajs/static";
 import { delete_addon } from "./helpers/delete";
 import { createClient } from "@supabase/supabase-js";
 
+console.log("VAI PRO CACETE");
+
 export const prisma = new PrismaClient();
 export const supabase = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);
 
