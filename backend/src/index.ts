@@ -5,7 +5,7 @@ import { get_addons, get_contentsof } from "./helpers/get.js";
 import { delete_addon } from "./helpers/delete.js";
 import { createClient } from "@supabase/supabase-js";
 import fastify from "fastify";
-import cors from "fastify-cors";
+import cors from "@fastify/cors";
 
 
 export const prisma = new PrismaClient();
@@ -28,8 +28,8 @@ async function main() {
   })
     .get('/addons/:amount', async (req, res) => void res.send(await get_addons(Number((req.params as any).amount))))
     .post('/edit/:id', async (req, res) => void res.send(await edit(Number((req.params as any).id), req.body as Addon)))
-    .delete("delete/:id", async (req, res) => void res.send(await delete_addon(Number((req.params as any).id))))
-    .get("content/:id", async (req, res) => void res.send(await get_contentsof(Number((req.params as any).id))))
+    .delete("/delete/:id", async (req, res) => void res.send(await delete_addon(Number((req.params as any).id))))
+    .get("/content/:id", async (req, res) => void res.send(await get_contentsof(Number((req.params as any).id))))
     .post("/create", async (req, res) => void res.send(await create_addon(req.body as Addon)))
   return app;
 }
