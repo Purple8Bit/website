@@ -60,5 +60,6 @@ async function main() {
         ctx.body = "Já era";
       })
       .listen(3000);
+  return app;
 }
-main();
+export default main();
