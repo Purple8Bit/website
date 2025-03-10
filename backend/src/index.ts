@@ -1,4 +1,4 @@
-/*import * as dotenv from 'dotenv';
+import * as dotenv from 'dotenv';
 
 dotenv.config();
 import { Elysia, t } from "elysia";
@@ -62,7 +62,5 @@ async function main() {
       })
       .listen(3000);
   return app;
-}*/
-export default function handler(req, res) {
-  res.json({ msg: "VAI PRO CACETE" });
 }
+export default main();
