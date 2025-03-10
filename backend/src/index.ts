@@ -62,4 +62,4 @@ async function main() {
       .listen(3000);
   return app;
 }
-export default main();
+main();
