@@ -14,6 +14,7 @@ export const prisma = new PrismaClient();
 export const supabase = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_KEY!);
 
 async function init() {
+  console.log("Eu to inicializando cacete");
   const { error } = await supabase.storage.getBucket("imgs");
   {
     if (error) {
@@ -26,6 +27,7 @@ async function init() {
 }
 
 async function main() {
+  console.log("Isso é antes de inicializar");
   await init();
   const app =
     new Elysia()
