@@ -1,5 +1,5 @@
-import { prisma } from "..";
-import { delete_img } from "./file_manager";
+import { prisma } from "../index.js";
+import { delete_img } from "./file_manager.js";
 
 export async function delete_addon(id: number) {
   const data = await prisma.addon.delete({

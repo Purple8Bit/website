@@ -1,4 +1,4 @@
-import { prisma } from "..";
+import { prisma } from "../index.js";
 
 export async function get_addons(n: number) {
   let val;

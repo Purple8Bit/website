@@ -1,4 +1,4 @@
-import { supabase } from "..";
+import { supabase } from "../index.js";
 
 export async function save_blob(name: string, buffer: Blob) {
   try {

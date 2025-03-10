@@ -1,6 +1,6 @@
 import { Addon } from "@prisma/client";
-import { prisma } from "..";
-import { delete_img, save_blob } from "./file_manager";
+import { prisma } from "../index.js";
+import { delete_img, save_blob } from "./file_manager.js";
 import { v4 as uuidv4 } from "uuid";
 interface ContentData {
   text?: string;
