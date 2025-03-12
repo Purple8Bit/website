@@ -1,0 +1,32 @@
+.about-page {
+  width: 100%;
+  color: var(--fg);
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  .title {
+    padding-bottom: 0px;
+    padding-top: 0px;
+    font-size: 48px;
+    font-weight: 600;
+  }
+  .about {
+    display:flex;
+    flex-direction: column;
+    row-gap: 12px;
+    text-align: left;
+    width: 60%;
+    p{
+      line-height: 2;
+      font-weight: 500;
+    }
+  }
+}
+.initial {
+  margin: 36px 0px;
+  display:flex;
+  align-items: center;
+  flex-direction: row;
+  column-gap: 48px;
+}

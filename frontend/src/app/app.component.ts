@@ -1,5 +1,5 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 
 @Component({
@@ -9,7 +9,9 @@ import { HomeComponent } from './home/home.component';
   styleUrl: './app.component.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class AppComponent {
+export class AppComponent{
   title = 'Purplebyte';
-  constructor() { }
+  constructor() {
+  }
+
 }
