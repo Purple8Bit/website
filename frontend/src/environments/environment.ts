@@ -1,4 +1,4 @@
 export const environment = {
-  server_url: "http://localhost:3000/",
+  server_url: "https://backend-murex-eta.vercel.app/",
   production: true
 };
